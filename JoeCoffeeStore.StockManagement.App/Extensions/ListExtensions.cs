@@ -18,4 +18,6 @@ namespace JoeCoffeeStore.StockManagement.App.Extensions
         }
 
     }
+
+
 }

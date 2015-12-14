@@ -3,21 +3,21 @@
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
                       Title="Joe's Coffee Store stock management" 
-  
-                      
+                      xmlns:viewmodel ="clr-namespace:JoeCoffeeStore.StockManagement.App.ViewModel"
+                      DataContext="{Binding Source={StaticResource localViewModelLocator}, Path=CoffeeOverviewViewModel}"
                       Height="480" 
                       Width="640">
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <ListView Name="CoffeListView" DisplayMemberPath="CoffeeName" SelectionChanged="CoffeListView_SelectionChanged" Grid.Column="0" Margin="5">
-            
-            <!--<ListView.ItemTemplate>
+        <ListView Name="CoffeListView" ItemsSource="{Binding Coffees}" SelectedItem="{Binding SelectedCoffee}" Grid.Column="0" Margin="5">
+            <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border BorderBrush="#CCCCCC" BorderThickness="1">
-                        <Grid Background="{Binding AmountInStock, Converter={StaticResource localAmountInStockConverter}}">
+                        <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="100"></ColumnDefinition>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -28,18 +28,18 @@
                                 <RowDefinition Height="30"></RowDefinition>
                                 <RowDefinition Height="15"></RowDefinition>
                             </Grid.RowDefinitions>
-                            <Image Grid.RowSpan="2" VerticalAlignment="Center"></Image> 
-                            <Label  FontSize="14" Grid.Column="1"  Grid.ColumnSpan="2" FontWeight="Bold"></Label>
+                            <Image Grid.RowSpan="2" Source="{Binding ImageId, Converter={StaticResource localImageConverter}}" VerticalAlignment="Center"></Image>
+                            <Label Content="{Binding CoffeeName, Converter={StaticResource localDoNothingConverter}}"  FontSize="14" Grid.Column="1"  Grid.ColumnSpan="2" FontWeight="Bold"></Label>
                             <StackPanel  Grid.Row="1" Orientation="Horizontal" Grid.Column="1">
                                 <Label Content="Stock: "></Label>
-                                <Label  ></Label>
+                                <Label Content="{Binding AmountInStock}" ></Label>
                             </StackPanel>
-                            <Label  HorizontalAlignment="Right" Grid.Row="1" Grid.Column="2" ></Label>
+                            <Label  HorizontalAlignment="Right" Content="{Binding Price, Converter={StaticResource localPriceConverter}}" Grid.Row="1" Grid.Column="2" ></Label>
 
                         </Grid>
                     </Border>
                 </DataTemplate>
-            </ListView.ItemTemplate>-->
+            </ListView.ItemTemplate>
         </ListView>
         <Grid Grid.Column="1" Margin="5">
             <Grid.RowDefinitions>
@@ -56,7 +56,7 @@
                 <ColumnDefinition Width="150"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Image Source="{Binding SelectedCoffee.ImageId, Converter={StaticResource localImageConverter}, Mode=OneWay}" Grid.Row="0"
+            <Image Source="{Binding SelectedCoffee.CoffeeId, Converter={StaticResource localImageConverter}}"  Grid.Row="0"
                    Grid.ColumnSpan="2" MaxHeight="150" MaxWidth="150"></Image>
             <Label Grid.Row="1" Content="Id" FontWeight="Bold"></Label>
             <Label Grid.Row="2" Content="Coffee name" FontWeight="Bold"></Label>
@@ -65,16 +65,20 @@
             <Label Grid.Row="5" Content="Stock amount" FontWeight="Bold"></Label>
             <Label Grid.Row="6" Content="First time added" FontWeight="Bold"></Label>
 
-            <Label Grid.Row="1" Name="lblCoffeeID" Grid.Column="1"></Label>
-            <Label Grid.Row="2" Name="lblCoffeeName" Grid.Column="1"></Label>
-            <Label Grid.Row="3" Name="lblDescription" Grid.Column="1"></Label>
-            <Label Grid.Row="4" Name="lblPrice" Grid.Column="1" ></Label>
-            <Label Grid.Row="5" Name="lblStockAmount" Grid.Column="1"></Label>
-            <Label Grid.Row="6" Name="lblFirstTimeAdded" Grid.Column="1"></Label>
+            <Label Grid.Row="1" Name="lblCoffeeID" Content="{Binding SelectedCoffee.CoffeeId}" Grid.Column="1"></Label>
+            <Label Grid.Row="2" Name="lblCoffeeName" Content="{Binding SelectedCoffee.CoffeeName}" Grid.Column="1"></Label>
+            <Label Grid.Row="3" Name="lblDescription" Content="{Binding SelectedCoffee.Description}" Grid.Column="1"></Label>
+            <Label Grid.Row="4" Name="lblPrice" Grid.Column="1" Content="{Binding SelectedCoffee.Price}" ></Label>
+            <Label Grid.Row="5" Name="lblStockAmount" Grid.Column="1" Content="{Binding AmountInStock}"></Label>
+            <Label Grid.Row="6" Name="lblFirstTimeAdded" Grid.Column="1" Content="{Binding FirstAddedToStockDate}"></Label>
 
             <StackPanel Grid.Row="7">
-                <Button   Content="Edit coffee"  Click="Button_Click"></Button>
+
+
+                <Button  Command="{Binding CoffeEditCommand}" Content="Edit coffee"></Button>
+
             </StackPanel>
+
         </Grid>
     </Grid>
 </Controls:MetroWindow>

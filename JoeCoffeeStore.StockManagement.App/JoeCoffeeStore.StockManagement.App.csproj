@@ -60,6 +60,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converter\AmountInStockConverter.cs" />
+    <Compile Include="Converter\DoNothingConverter.cs" />
     <Compile Include="Converter\ImageConverter.cs" />
     <Compile Include="Converter\PriceConverter.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
@@ -68,9 +69,10 @@
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\IDataService.cs" />
     <Compile Include="Services\IDialogService.cs" />
-    <Compile Include="Utility\CustomCommand.cs" />
-    <Compile Include="Utility\Messenger.cs" />
-    <Compile Include="ViewModelLocator.cs" />
+    <Compile Include="Utilities\CustomCommand.cs" />
+    <Compile Include="Utilities\MyCommand.cs" />
+    <Compile Include="ViewModel\CoffeeOverviewViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\CoffeeDetailView.xaml.cs">
       <DependentUpon>CoffeeDetailView.xaml</DependentUpon>
     </Compile>
