@@ -21,18 +21,18 @@ namespace JoeCoffeeStore.StockManagement.App.View
     /// </summary>
     public partial class CoffeeDetailView : MetroWindow
     {
-        public Coffee SelectedCoffee { get; set; }
+        //public Coffee SelectedCoffee { get; set; }
         public CoffeeDetailView()
         {
             InitializeComponent();
-            this.Loaded += CoffeeDetailView_Loaded;
+          
         }
 
-        private void CoffeeDetailView_Loaded(object sender, RoutedEventArgs e)
-        {
-            // LoadData();
-            this.DataContext = this.SelectedCoffee;
-        }
+        //private void CoffeeDetailView_Loaded(object sender, RoutedEventArgs e)
+        //{
+        //    // LoadData();
+        //    this.DataContext = this.SelectedCoffee;
+        //}
 
         //private void LoadData()
         //{
@@ -62,25 +62,25 @@ namespace JoeCoffeeStore.StockManagement.App.View
         //        //"C:\Users\kkanmani\Documents\StudyMaterials\MVVM\PluralsightCourse\practical-mvvm\1-practical-mvvm-m1-exercise-files\Finished application\JoeCoffeeStore.StockManagement.App\Images\coffee1.jpg";
         //}
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
+        //private void Button_Click(object sender, RoutedEventArgs e)
+        //{
 
-        }
+        //}
 
-        private void SaveCoffee_Click(object sender, RoutedEventArgs e)
-        {
+        //private void SaveCoffee_Click(object sender, RoutedEventArgs e)
+        //{
 
-        }
+        //}
 
-        private void DeleteCoffe_Click(object sender, RoutedEventArgs e)
-        {
+        //private void DeleteCoffe_Click(object sender, RoutedEventArgs e)
+        //{
 
-        }
+        //}
 
-        private void changecoffee_Click(object sender, RoutedEventArgs e)
-        {
-            SelectedCoffee.CoffeeName = "Houston Coffee";
-            SelectedCoffee.Price = 400;
-        }
+        //private void changecoffee_Click(object sender, RoutedEventArgs e)
+        //{
+        //    SelectedCoffee.CoffeeName = "Houston Coffee";
+        //    SelectedCoffee.Price = 400;
+        //}
     }
 }

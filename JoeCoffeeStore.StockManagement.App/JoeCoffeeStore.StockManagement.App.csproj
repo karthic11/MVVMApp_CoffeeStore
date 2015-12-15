@@ -70,7 +70,9 @@
     <Compile Include="Services\IDataService.cs" />
     <Compile Include="Services\IDialogService.cs" />
     <Compile Include="Utilities\CustomCommand.cs" />
+    <Compile Include="Utilities\Messenger.cs" />
     <Compile Include="Utilities\MyCommand.cs" />
+    <Compile Include="ViewModel\CoffeeDetailViewModel.cs" />
     <Compile Include="ViewModel\CoffeeOverviewViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\CoffeeDetailView.xaml.cs">

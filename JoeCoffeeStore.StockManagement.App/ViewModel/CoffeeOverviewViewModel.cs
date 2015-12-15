@@ -12,14 +12,16 @@ using System.ComponentModel;
 using System;
 using JoeCoffeeStore.StockManagement.App.Utilities;
 using JoeCoffeeStore.StockManagement.App.Utility;
+using JoeCoffeeStore.StockManagement.App.Messages;
 
 namespace JoeCoffeeStore.StockManagement.App.ViewModel
 {
     public class CoffeeOverviewViewModel : INotifyPropertyChanged
     {
 
-        private CoffeeDataService coffeedataservice;
+        private ICoffeeDataService coffeedataservice;
         public ICommand CoffeEditCommand { get; set; }
+        private IDialogService dialogservice;
 
         private ObservableCollection<Coffee> coffees;
         public ObservableCollection<Coffee> Coffees
@@ -62,13 +64,20 @@ namespace JoeCoffeeStore.StockManagement.App.ViewModel
         }
 
 
-        public CoffeeOverviewViewModel()
+        public CoffeeOverviewViewModel(ICoffeeDataService coffeedataservice, IDialogService dialogservice)
         {
-            coffeedataservice = new CoffeeDataService();
+            this.coffeedataservice = coffeedataservice;
+            this.dialogservice = dialogservice;
             LoadData();
             LoadCommands();
+            Messenger.Default.Register<UpdateListMessage>(this, OnUpdateListMessageReceived);
         }
 
+        private void OnUpdateListMessageReceived(UpdateListMessage obj)
+        {
+            LoadData();
+            dialogservice.CloseDetailDialog();
+        }
 
         private void LoadCommands()
         {
@@ -77,7 +86,9 @@ namespace JoeCoffeeStore.StockManagement.App.ViewModel
 
         private void EditCoffee(object obj)
         {
-            string test = "";
+
+            Messenger.Default.Send<Coffee>(selectedcoffee);
+            dialogservice.ShowDetailDialog();
         }
 
         private bool CanEditCoffee(object obj)

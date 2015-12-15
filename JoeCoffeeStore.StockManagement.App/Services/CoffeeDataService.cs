@@ -11,14 +11,13 @@ namespace JoeCoffeeStore.StockManagement.App.Services
 {
     public class CoffeeDataService: ICoffeeDataService
     {
-        ICoffeeRepository repository = new CoffeeRepository();
+        ICoffeeRepository repository;
+
         public CoffeeDataService(ICoffeeRepository repository)
         {
             this.repository = repository;
         }
-        public CoffeeDataService()
-        {
-        }
+        
 
         public Coffee GetCoffeeDetail(int coffeeId)
         {

@@ -6,6 +6,7 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         Height="400" 
         Width="600"
+        DataContext="{Binding Source={StaticResource localViewModelLocator}, Path=CoffeeDetailViewModel}"
         >
     <ScrollViewer>
         
@@ -27,7 +28,7 @@
                 <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition Height="30"></RowDefinition>
             </Grid.RowDefinitions>
-            <Label Grid.Row="0" Name="CoffeNameLabel" Content="{Binding CoffeeName, Mode=OneWay}"  Grid.ColumnSpan="2" FontSize="40" FontWeight="Bold"></Label>
+            <Label Grid.Row="0" Name="CoffeNameLabel" Content="{Binding SelectedCoffee.CoffeeName, Mode=OneWay}"  Grid.ColumnSpan="2" FontSize="40" FontWeight="Bold"></Label>
 
             <Image Name="CoffeeImage"  Grid.Row="1"
                    Grid.ColumnSpan="2" MaxHeight="150" MaxWidth="150"></Image>
@@ -37,19 +38,35 @@
             <Label Grid.Row="5" Content="Stock amount" FontWeight="Bold"></Label>
             <Label Grid.Row="6" Content="First time added" FontWeight="Bold"></Label>
 
-            <TextBox Grid.Row="2" Name="CoffeeIdTextBox" Text="{Binding CoffeeId}" Grid.Column="1" ></TextBox>
-            <TextBox Grid.Row="3" Name="CoffeeDescriptionTextBox" Text="{Binding Description}" Grid.Column="1"  AcceptsReturn="True" Height="75"></TextBox>
-            <TextBox Grid.Row="4" Name="CoffeePriceTextBox" Text="{Binding Price}" Grid.Column="1"></TextBox>
+            <TextBox Grid.Row="2" Name="CoffeeIdTextBox" Text="{Binding SelectedCoffee.CoffeeId}" Grid.Column="1" ></TextBox>
+            <TextBox Grid.Row="3" Name="CoffeeDescriptionTextBox" Text="{Binding SelectedCoffee.Description}" Grid.Column="1"  AcceptsReturn="True" Height="75"></TextBox>
+            <TextBox Grid.Row="4" Name="CoffeePriceTextBox" Text="{Binding SelectedCoffee.Price}" Grid.Column="1"></TextBox>
 
-            <TextBox Grid.Row="5" Name="StockAmountTextBox" Text="{Binding AmountInStock}" Grid.Column="1" ></TextBox>
-            <TextBox Grid.Row="6" Name="FirstTimeAddedTextBox" Text="{Binding FirstAddedToStockDate}" Grid.Column="1"></TextBox>
-            <TextBox Grid.Row="7" Name="ExtraDescriptionTextBox" Text="{Binding ExtraDescription}" Grid.Column="1" ></TextBox>
+            <TextBox Grid.Row="5" Name="StockAmountTextBox" Text="{Binding SelectedCoffee.AmountInStock}" Grid.Column="1" ></TextBox>
+            <TextBox Grid.Row="6" Name="FirstTimeAddedTextBox" Text="{Binding SelectedCoffee.FirstAddedToStockDate}" Grid.Column="1"></TextBox>
+            <TextBox Grid.Row="7" Name="ExtraDescriptionTextBox" Text="{Binding SelectedCoffee.ExtraDescription}" Grid.Column="1" ></TextBox>
 
             <StackPanel Grid.Row="9" Orientation="Horizontal" Grid.ColumnSpan="2">
-                <Button Name="SaveCoffee"  Margin="5" Content="Save coffee" Click="SaveCoffee_Click"></Button>
-                <Button Name="changecoffee"  Margin="5" Content="Save coffee" Click="changecoffee_Click"></Button>
-                <Button Name="DeleteCoffe"  Margin="5" Content="Delete coffee" Click="DeleteCoffe_Click"></Button>
-               
+                <Button Content="Save Coffee">
+                    <i:Interaction.Triggers>
+
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding SaveCommand}"></i:InvokeCommandAction>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    
+                </Button>
+
+                <Button Content="Delete Coffee">
+                    <i:Interaction.Triggers>
+
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding DeleteCommand}"></i:InvokeCommandAction>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+
+                </Button>
+
             </StackPanel>
 
         </Grid>
