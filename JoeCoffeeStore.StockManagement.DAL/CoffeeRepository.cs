@@ -12,6 +12,8 @@ namespace JoeCoffeeStore.StockManagement.DAL
     {
         private static List<Coffee> coffees;
 
+        //test second commit
+        //start the testing
         public CoffeeRepository()
         {
         }
