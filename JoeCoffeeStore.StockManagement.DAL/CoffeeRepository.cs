@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace JoeCoffeeStore.StockManagement.DAL
 {
+    //This change is done in my private feature 
     public class CoffeeRepository : ICoffeeRepository
     {
         private static List<Coffee> coffees;
