@@ -60,7 +60,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converter\AmountInStockConverter.cs" />
-    <Compile Include="Converter\DoNothingConverter.cs" />
     <Compile Include="Converter\ImageConverter.cs" />
     <Compile Include="Converter\PriceConverter.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
