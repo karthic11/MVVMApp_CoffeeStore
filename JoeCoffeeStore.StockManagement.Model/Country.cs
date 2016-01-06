@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace JoeCoffeeStore.StockManagement.Model
 {
     //test this
+    //change this
     public enum Country
     {
         Brasil,
