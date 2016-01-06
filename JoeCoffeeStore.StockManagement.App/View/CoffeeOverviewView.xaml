@@ -29,7 +29,7 @@
                                 <RowDefinition Height="15"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Image Grid.RowSpan="2" Source="{Binding ImageId, Converter={StaticResource localImageConverter}}" VerticalAlignment="Center"></Image>
-                            <Label Content="{Binding CoffeeName, Converter={StaticResource localDoNothingConverter}}"  FontSize="14" Grid.Column="1"  Grid.ColumnSpan="2" FontWeight="Bold"></Label>
+                            <Label Content="{Binding CoffeeName}"  FontSize="14" Grid.Column="1"  Grid.ColumnSpan="2" FontWeight="Bold"></Label>
                             <StackPanel  Grid.Row="1" Orientation="Horizontal" Grid.Column="1">
                                 <Label Content="Stock: "></Label>
                                 <Label Content="{Binding AmountInStock}" ></Label>
